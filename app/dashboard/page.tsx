@@ -16,8 +16,6 @@ import {
   FileText,
   MessageSquare,
   Sparkles,
-  Scale,
-  ShieldAlert,
 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
@@ -102,20 +100,6 @@ export default async function DashboardPage() {
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   WhatsApp
-                </Link>
-                <Link
-                  href="/dashboard/juridico"
-                  className="px-2.5 py-1.5 rounded-xl text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 transition-colors font-extrabold flex items-center gap-1"
-                >
-                  <Scale className="w-3.5 h-3.5" />
-                  Jurídico
-                </Link>
-                <Link
-                  href="/dashboard/auditoria"
-                  className="px-2.5 py-1.5 rounded-xl text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 transition-colors font-extrabold flex items-center gap-1"
-                >
-                  <ShieldAlert className="w-3.5 h-3.5" />
-                  Auditoria
                 </Link>
               </nav>
             </div>
@@ -298,50 +282,6 @@ export default async function DashboardPage() {
                 className="inline-flex items-center gap-2 text-xs font-semibold text-[#F5CD67] hover:text-[#E5A838] transition-colors"
               >
                 <span>Acessar Financeiro</span>
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </CardContent>
-          </Card>
-
-          {/* Módulo Jurídico */}
-          <Card className="bg-[#010F25]/80 border-[#C1801F]/25 hover:bg-[#010F25] transition-all shadow-lg">
-            <CardHeader>
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-2 border border-amber-500/30">
-                <Scale className="w-5 h-5" />
-              </div>
-              <CardTitle className="text-base text-white">Módulo Jurídico</CardTitle>
-              <CardDescription className="text-[#E3DCBE]/60 text-xs">
-                Contenciosos, pareceres técnicos e instrumentos contratuais.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link
-                href="/dashboard/juridico"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#F5CD67] hover:text-[#E5A838] transition-colors"
-              >
-                <span>Acessar Módulo Jurídico</span>
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </CardContent>
-          </Card>
-
-          {/* Auditoria Avançada */}
-          <Card className="bg-[#010F25]/80 border-[#C1801F]/25 hover:bg-[#010F25] transition-all shadow-lg">
-            <CardHeader>
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-2 border border-cyan-500/30">
-                <ShieldAlert className="w-5 h-5" />
-              </div>
-              <CardTitle className="text-base text-white">Auditoria & LGPD</CardTitle>
-              <CardDescription className="text-[#E3DCBE]/60 text-xs">
-                Trilha imutável de audit trail e rastreamento de acessos e modificações.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link
-                href="/dashboard/auditoria"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#F5CD67] hover:text-[#E5A838] transition-colors"
-              >
-                <span>Acessar Trilha de Auditoria</span>
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </CardContent>
