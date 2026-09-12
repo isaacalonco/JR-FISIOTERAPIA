@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useTransition } from "react";
+import { createPortal } from "react-dom";
 import { registerPaymentAction } from "@/app/actions/financial.actions";
 import { CheckCircle2, DollarSign, X } from "lucide-react";
 
@@ -33,10 +34,10 @@ export default function PaymentButton({ receivableId, amount }: PaymentButtonPro
         <span>Dar Baixa</span>
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
-          <div className="fixed inset-0" onClick={() => setIsOpen(false)} />
-          <div className="relative z-10 bg-[#010F25] border border-[#C1801F]/35 rounded-3xl w-full max-w-sm shadow-2xl p-6 text-[#E3DCBE] space-y-5">
+      {isOpen && createPortal(
+        <div style={{position:'fixed',inset:0,zIndex:99999,background:'rgba(0,10,27,0.85)',backdropFilter:'blur(8px)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <div style={{position:'fixed',inset:0}} onClick={() => setIsOpen(false)} />
+          <div style={{position:'relative',zIndex:10000,background:'#010F25',border:'1px solid rgba(193,128,31,0.35)',borderRadius:'1.5rem',width:'100%',maxWidth:'384px',boxShadow:'0 25px 50px rgba(0,0,0,0.6)',padding:'1.5rem',color:'#E3DCBE',margin:'0 16px'}}>
             <div className="flex items-center justify-between border-b border-[#011733] pb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#F5CD67]" />
@@ -83,7 +84,7 @@ export default function PaymentButton({ receivableId, amount }: PaymentButtonPro
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 }

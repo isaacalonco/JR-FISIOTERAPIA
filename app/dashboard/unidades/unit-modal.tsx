@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useActionState } from "react";
+import { createPortal } from "react-dom";
 import { Plus, X, CheckCircle2, AlertCircle, Building2 } from "lucide-react";
 import { createUnitAction } from "@/app/actions/reports.actions";
 
@@ -19,10 +20,10 @@ export default function NewUnitModal() {
         <span>Nova Unidade / Filial</span>
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
-          <div className="fixed inset-0" onClick={() => setIsOpen(false)} />
-          <div className="relative z-10 w-full max-w-lg max-h-[85vh] flex flex-col bg-[#010F25] border border-[#C1801F]/35 rounded-3xl shadow-2xl overflow-hidden text-[#E3DCBE]">
+      {isOpen && createPortal(
+        <div style={{position:'fixed',inset:0,zIndex:99999,background:'rgba(0,10,27,0.85)',backdropFilter:'blur(8px)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <div style={{position:'fixed',inset:0}} onClick={() => setIsOpen(false)} />
+          <div style={{position:'relative',zIndex:10000,width:'100%',maxWidth:'512px',maxHeight:'85vh',display:'flex',flexDirection:'column',background:'#010F25',border:'1px solid rgba(193,128,31,0.35)',borderRadius:'1.5rem',boxShadow:'0 25px 50px rgba(0,0,0,0.6)',overflow:'hidden',color:'#E3DCBE',margin:'0 16px'}}>
             <div className="p-5 sm:p-6 border-b border-[#011733] flex items-center justify-between shrink-0 bg-[#010F25]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#E5A838]/10 text-[#F5CD67] border border-[#C1801F]/30 flex items-center justify-center">
@@ -123,7 +124,7 @@ export default function NewUnitModal() {
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 }

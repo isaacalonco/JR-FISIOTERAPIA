@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useActionState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { createExpenseAction } from "@/app/actions/financial.actions";
 import { Plus, X, CreditCard, CheckCircle2, AlertCircle } from "lucide-react";
 
@@ -28,10 +29,10 @@ export default function ExpenseModal() {
         <span>Nova Despesa (A Pagar)</span>
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
-          <div className="fixed inset-0" onClick={() => setIsOpen(false)} />
-          <div className="relative z-10 w-full max-w-lg max-h-[85vh] flex flex-col bg-[#010F25] border border-[#C1801F]/35 rounded-3xl shadow-2xl overflow-hidden text-[#E3DCBE]">
+      {isOpen && createPortal(
+        <div style={{position:'fixed',inset:0,zIndex:99999,background:'rgba(0,10,27,0.85)',backdropFilter:'blur(8px)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <div style={{position:'fixed',inset:0}} onClick={() => setIsOpen(false)} />
+          <div style={{position:'relative',zIndex:10000,width:'100%',maxWidth:'512px',maxHeight:'85vh',display:'flex',flexDirection:'column',background:'#010F25',border:'1px solid rgba(193,128,31,0.35)',borderRadius:'1.5rem',boxShadow:'0 25px 50px rgba(0,0,0,0.6)',overflow:'hidden',color:'#E3DCBE',margin:'0 16px'}}>
             {/* Header */}
             <div className="flex items-center justify-between p-5 sm:p-6 border-b border-[#011733] bg-[#010F25] shrink-0">
               <div className="flex items-center gap-3">
@@ -157,7 +158,7 @@ export default function ExpenseModal() {
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 }
