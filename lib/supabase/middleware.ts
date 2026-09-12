@@ -32,8 +32,27 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  // Atualiza/valida o token JWT em background
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const pathname = request.nextUrl.pathname;
+  const isAuthRoute =
+    pathname.startsWith("/login") || pathname.startsWith("/auth/callback");
+
+  // Se o usuário não está logado e tenta acessar rotas protegidas
+  if (!user && !isAuthRoute) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
+  }
+
+  // Se o usuário já está logado e acessa a página de login
+  if (user && isAuthRoute && !pathname.startsWith("/auth/callback")) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/dashboard";
+    return NextResponse.redirect(url);
+  }
 
   return supabaseResponse;
 }

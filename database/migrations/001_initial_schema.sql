@@ -221,7 +221,7 @@ CREATE TABLE IF NOT EXISTS patient_dependents (
     dependent_patient_id UUID NOT NULL REFERENCES patients(id) ON DELETE CASCADE,
     relationship VARCHAR(50) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
-    PRIMARY KEY (holder_patient_id, dependent_patient_id)
+    UNIQUE (holder_patient_id, dependent_patient_id)
 );
 
 -- ==============================================================================

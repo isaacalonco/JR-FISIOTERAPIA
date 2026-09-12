@@ -38,6 +38,8 @@ export function formatCurrencyBRL(amount: number): string {
   }).format(amount);
 }
 
+export const formatBRL = formatCurrencyBRL;
+
 export function formatDateBR(dateStr: string | Date): string {
   if (!dateStr) return "";
   const date = typeof dateStr === "string" ? new Date(dateStr) : dateStr;

@@ -17,7 +17,7 @@ Este documento sintetiza as 10 fases ordenadas de implementação, respeitando a
 
 ---
 
-### ⏳ FASE 2: Autenticação, Usuários e RBAC Server-Side
+### ✅ FASE 2: Autenticação, Usuários e RBAC Server-Side (CONCLUÍDA)
 - Integração ativa com Supabase Auth.
 - Fluxo de login, recuperação de senha e alteração de credenciais.
 - Gestão de perfis e atribuição de papéis (User Roles).
@@ -25,7 +25,7 @@ Este documento sintetiza as 10 fases ordenadas de implementação, respeitando a
 
 ---
 
-### ⏳ FASE 3: Dashboard Administrativo, Pacientes e Serviços
+### ✅ FASE 3: Dashboard Administrativo, Pacientes e Serviços (CONCLUÍDA)
 - Dashboard administrativo com indicadores-chave (faturamento, atendimentos, novos pacientes).
 - Módulo completo de Pacientes (cadastro, validação de CPF, contatos de emergência).
 - Módulo de Profissionais e Especialidades.
@@ -33,7 +33,7 @@ Este documento sintetiza as 10 fases ordenadas de implementação, respeitando a
 
 ---
 
-### ⏳ FASE 4: Agenda Médica e Multidisciplinar
+### ✅ FASE 4: Agenda Médica e Multidisciplinar (CONCLUÍDA)
 - Visualização diária, semanal e mensal de consultas.
 - Agendamento por profissional, unidade e sala.
 - Prevenção ativa de conflitos de horário.
@@ -41,7 +41,7 @@ Este documento sintetiza as 10 fases ordenadas de implementação, respeitando a
 
 ---
 
-### ⏳ FASE 5: Prontuário Eletrônico e Módulo de Fisioterapia
+### ✅ FASE 5: Prontuário Eletrônico e Módulo de Fisioterapia (CONCLUÍDA)
 - Ficha de avaliação fisioterapêutica completa e histórico cronológico.
 - Anamnese, exame físico e plano terapêutico.
 - Registro de evolução diária por sessão com escala de dor.
@@ -49,7 +49,7 @@ Este documento sintetiza as 10 fases ordenadas de implementação, respeitando a
 
 ---
 
-### ⏳ FASE 6: Gestão Financeira e Repasses Profissionais
+### ✅ FASE 6: Gestão Financeira e Repasses Profissionais (CONCLUÍDA)
 - Contas a Pagar e a Receber.
 - Fluxo de caixa diário e mensal.
 - Regras dinâmicas e configuráveis de comissão e repasse por serviço/profissional.
