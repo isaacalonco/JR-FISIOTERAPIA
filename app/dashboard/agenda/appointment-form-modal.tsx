@@ -2,7 +2,7 @@
 
 import React, { useState, useActionState, useEffect } from "react";
 import { createAppointmentAction } from "@/app/actions/appointment.actions";
-import { Plus, X, Calendar, CheckCircle2, AlertCircle, Clock } from "lucide-react";
+import { Plus, X, Calendar, CheckCircle2, AlertCircle } from "lucide-react";
 
 interface PatientOption {
   id: string;
@@ -46,7 +46,6 @@ export default function AppointmentFormModal({
   const [startDateTime, setStartDateTime] = useState<string>("");
   const [computedEndTime, setComputedEndTime] = useState<string>("");
 
-  // Recalcula o horário de término automaticamente ao selecionar serviço ou horário inicial
   useEffect(() => {
     if (!startDateTime || !selectedServiceId) return;
 
@@ -57,7 +56,6 @@ export default function AppointmentFormModal({
     if (isNaN(start.getTime())) return;
 
     const end = new Date(start.getTime() + duration * 60 * 1000);
-    // Formata para ISO sem millis
     setComputedEndTime(end.toISOString().slice(0, 16));
   }, [startDateTime, selectedServiceId, services]);
 
@@ -75,31 +73,31 @@ export default function AppointmentFormModal({
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-semibold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-2"
+        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] hover:opacity-95 text-[#000A1B] font-extrabold text-xs shadow-lg shadow-[#E5A838]/20 transition-all flex items-center gap-2"
       >
-        <Plus className="w-4 h-4" />
+        <Plus className="w-4 h-4 text-[#000A1B]" />
         <span>Novo Agendamento</span>
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-xl shadow-2xl p-6 relative text-slate-100">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
+          <div className="bg-[#010F25] border border-[#C1801F]/35 rounded-3xl w-full max-w-xl shadow-2xl p-6 relative text-[#E3DCBE]">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-[#011733] pb-4 mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#E5A838]/10 text-[#F5CD67] border border-[#C1801F]/30 flex items-center justify-center">
                   <Calendar className="w-5 h-5" />
                 </div>
                 <div>
                   <h2 className="text-base font-bold text-white">Agendar Nova Consulta</h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[#E3DCBE]/70">
                     Prevenção ativa contra choque de horários e salas.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+                className="p-2 text-[#E3DCBE]/60 hover:text-white rounded-lg hover:bg-[#011733] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -123,11 +121,11 @@ export default function AppointmentFormModal({
             {/* Form */}
             <form action={formAction} className="space-y-4 text-xs">
               <div className="space-y-1">
-                <label className="block font-semibold text-slate-300">Paciente *</label>
+                <label className="block font-semibold text-[#E3DCBE]/80">Paciente *</label>
                 <select
                   name="patientId"
                   required
-                  className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                 >
                   <option value="">-- Selecione o Paciente --</option>
                   {patients.map((p) => (
@@ -140,11 +138,11 @@ export default function AppointmentFormModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Profissional da Saúde *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Profissional da Saúde *</label>
                   <select
                     name="professionalId"
                     required
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                   >
                     <option value="">-- Selecione o Profissional --</option>
                     {professionals.map((pr) => (
@@ -156,13 +154,13 @@ export default function AppointmentFormModal({
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Procedimento / Serviço *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Procedimento / Serviço *</label>
                   <select
                     name="serviceId"
                     required
                     value={selectedServiceId}
                     onChange={(e) => setSelectedServiceId(e.target.value)}
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                   >
                     <option value="">-- Selecione o Serviço --</option>
                     {services.map((s) => (
@@ -176,36 +174,36 @@ export default function AppointmentFormModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Data e Hora de Início *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Data e Hora de Início *</label>
                   <input
                     type="datetime-local"
                     name="startTime"
                     required
                     value={startDateTime}
                     onChange={(e) => setStartDateTime(e.target.value)}
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Término Estimado *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Término Estimado *</label>
                   <input
                     type="datetime-local"
                     name="endTime"
                     required
                     value={computedEndTime}
                     onChange={(e) => setComputedEndTime(e.target.value)}
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                   />
                 </div>
               </div>
 
               {rooms.length > 0 && (
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Sala / Consultório</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Sala / Consultório</label>
                   <select
                     name="roomId"
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                   >
                     <option value="">-- Nenhuma sala atribuída --</option>
                     {rooms.map((r) => (
@@ -218,28 +216,28 @@ export default function AppointmentFormModal({
               )}
 
               <div className="space-y-1">
-                <label className="block font-semibold text-slate-300">Observações Clínicas / Triagem</label>
+                <label className="block font-semibold text-[#E3DCBE]/80">Observações Clínicas / Triagem</label>
                 <textarea
                   name="notes"
                   rows={2}
                   placeholder="Queixa inicial ou preferências do paciente..."
-                  className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] placeholder-[#E3DCBE]/40 focus:outline-none"
                 />
               </div>
 
               {/* Actions */}
-              <div className="pt-4 border-t border-slate-800 flex justify-end gap-3">
+              <div className="pt-4 border-t border-[#011733] flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold"
+                  className="px-4 py-2.5 rounded-xl bg-[#011733] hover:bg-[#011733]/80 text-[#E3DCBE] font-semibold"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] hover:opacity-95 text-[#000A1B] font-extrabold shadow-md"
                 >
                   {isPending ? "Validando Horários..." : "Confirmar Agendamento"}
                 </button>

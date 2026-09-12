@@ -22,31 +22,31 @@ export default function PatientFormModal() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-semibold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-2"
+        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] hover:opacity-95 text-[#000A1B] font-extrabold text-xs shadow-lg shadow-[#E5A838]/20 transition-all flex items-center gap-2"
       >
-        <Plus className="w-4 h-4" />
+        <Plus className="w-4 h-4 text-[#000A1B]" />
         <span>Novo Paciente</span>
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative text-slate-100">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
+          <div className="bg-[#010F25] border border-[#C1801F]/35 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative text-[#E3DCBE]">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-[#011733] pb-4 mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#E5A838]/10 text-[#F5CD67] border border-[#C1801F]/30 flex items-center justify-center">
                   <UserPlus className="w-5 h-5" />
                 </div>
                 <div>
                   <h2 className="text-base font-bold text-white">Cadastrar Novo Paciente</h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[#E3DCBE]/70">
                     Insira os dados cadastrais do paciente com validação de CPF.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+                className="p-2 text-[#E3DCBE]/60 hover:text-white rounded-lg hover:bg-[#011733] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -71,43 +71,43 @@ export default function PatientFormModal() {
             <form action={formAction} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Nome Completo *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Nome Completo *</label>
                   <input
                     type="text"
                     name="fullName"
                     required
                     placeholder="Ex: Maria Oliveira Silva"
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] placeholder-[#E3DCBE]/40 focus:outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">CPF *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">CPF *</label>
                   <input
                     type="text"
                     name="cpf"
                     required
                     placeholder="000.000.000-00"
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none font-mono"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] placeholder-[#E3DCBE]/40 focus:outline-none font-mono"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Data de Nascimento *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Data de Nascimento *</label>
                   <input
                     type="date"
                     name="birthDate"
                     required
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Gênero *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Gênero *</label>
                   <select
                     name="gender"
                     required
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] focus:outline-none"
                   >
                     <option value="FEMININO">Feminino</option>
                     <option value="MASCULINO">Masculino</option>
@@ -116,62 +116,62 @@ export default function PatientFormModal() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Telefone Celular *</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Telefone Celular *</label>
                   <input
                     type="text"
                     name="phone"
                     required
                     placeholder="(11) 99999-9999"
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none font-mono"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] placeholder-[#E3DCBE]/40 focus:outline-none font-mono"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">E-mail</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">E-mail</label>
                   <input
                     type="email"
                     name="email"
                     placeholder="paciente@email.com"
-                    className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] placeholder-[#E3DCBE]/40 focus:outline-none"
                   />
                 </div>
               </div>
 
               {/* Endereço */}
-              <div className="pt-2 border-t border-slate-800/60 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="pt-2 border-t border-[#011733] grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="sm:col-span-2 space-y-1">
-                  <label className="block font-semibold text-slate-300">Rua / Logradouro</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Rua / Logradouro</label>
                   <input
                     type="text"
                     name="addressStreet"
                     placeholder="Av. Paulista"
-                    className="w-full p-2 bg-slate-950/60 border border-slate-800 rounded-xl text-white"
+                    className="w-full p-2 bg-[#000A1B]/80 border border-[#011733] rounded-xl text-[#E3DCBE]"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="block font-semibold text-slate-300">Número</label>
+                  <label className="block font-semibold text-[#E3DCBE]/80">Número</label>
                   <input
                     type="text"
                     name="addressNumber"
                     placeholder="1000"
-                    className="w-full p-2 bg-slate-950/60 border border-slate-800 rounded-xl text-white"
+                    className="w-full p-2 bg-[#000A1B]/80 border border-[#011733] rounded-xl text-[#E3DCBE]"
                   />
                 </div>
               </div>
 
               {/* Actions */}
-              <div className="pt-4 border-t border-slate-800 flex justify-end gap-3">
+              <div className="pt-4 border-t border-[#011733] flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold"
+                  className="px-4 py-2.5 rounded-xl bg-[#011733] hover:bg-[#011733]/80 text-[#E3DCBE] font-semibold"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] hover:opacity-95 text-[#000A1B] font-extrabold shadow-md"
                 >
                   {isPending ? "Salvando..." : "Cadastrar Paciente"}
                 </button>

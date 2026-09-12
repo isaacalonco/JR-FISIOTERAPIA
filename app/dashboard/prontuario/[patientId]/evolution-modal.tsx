@@ -33,31 +33,31 @@ export default function EvolutionModal({ patientId }: EvolutionModalProps) {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-semibold text-xs shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-2"
+        className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] hover:opacity-95 text-[#000A1B] font-extrabold text-xs shadow-lg shadow-[#E5A838]/20 transition-all flex items-center gap-2"
       >
-        <Plus className="w-4 h-4" />
+        <Plus className="w-4 h-4 text-[#000A1B]" />
         <span>Nova Evolução (SOAP)</span>
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-xl shadow-2xl p-6 relative text-slate-100">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
+          <div className="bg-[#010F25] border border-[#C1801F]/35 rounded-3xl w-full max-w-xl shadow-2xl p-6 relative text-[#E3DCBE]">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-[#011733] pb-4 mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#E5A838]/10 text-[#F5CD67] border border-[#C1801F]/30 flex items-center justify-center">
                   <Activity className="w-5 h-5" />
                 </div>
                 <div>
                   <h2 className="text-base font-bold text-white">Registrar Evolução de Sessão</h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[#E3DCBE]/70">
                     Acompanhamento do estado funcional e escala analógica de dor.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+                className="p-2 text-[#E3DCBE]/60 hover:text-white rounded-lg hover:bg-[#011733] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -84,10 +84,10 @@ export default function EvolutionModal({ patientId }: EvolutionModalProps) {
               <input type="hidden" name="painLevel" value={painLevel} />
 
               {/* Pain Scale Selector */}
-              <div className="space-y-2 p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+              <div className="space-y-2 p-4 rounded-2xl bg-[#000A1B]/80 border border-[#011733]">
                 <div className="flex items-center justify-between">
-                  <label className="font-semibold text-slate-300 flex items-center gap-1.5">
-                    <Flame className="w-4 h-4 text-amber-400" />
+                  <label className="font-semibold text-[#E3DCBE]/90 flex items-center gap-1.5">
+                    <Flame className="w-4 h-4 text-[#E5A838]" />
                     Escala Analógica de Dor (EVA):
                   </label>
                   <span
@@ -104,9 +104,9 @@ export default function EvolutionModal({ patientId }: EvolutionModalProps) {
                   max="10"
                   value={painLevel}
                   onChange={(e) => setPainLevel(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                  className="w-full h-2 bg-[#011733] rounded-lg appearance-none cursor-pointer accent-[#E5A838]"
                 />
-                <div className="flex justify-between text-[10px] text-slate-500">
+                <div className="flex justify-between text-[10px] text-[#E3DCBE]/50">
                   <span>0 - Sem Dor</span>
                   <span>5 - Dor Moderada</span>
                   <span>10 - Dor Insuportável</span>
@@ -114,7 +114,7 @@ export default function EvolutionModal({ patientId }: EvolutionModalProps) {
               </div>
 
               <div className="space-y-1">
-                <label className="block font-semibold text-slate-300">
+                <label className="block font-semibold text-[#E3DCBE]/80">
                   Evolução Clínica / Notas de Atendimento (SOAP) *
                 </label>
                 <textarea
@@ -122,35 +122,35 @@ export default function EvolutionModal({ patientId }: EvolutionModalProps) {
                   required
                   rows={4}
                   placeholder="Relato do paciente, queixas do dia, amplitudes de movimento observadas..."
-                  className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] placeholder-[#E3DCBE]/40 focus:outline-none"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="block font-semibold text-slate-300">
+                <label className="block font-semibold text-[#E3DCBE]/80">
                   Conduta Terapêutica Aplicada
                 </label>
                 <textarea
                   name="conduct"
                   rows={3}
                   placeholder="Procedimentos realizados: Cinesioterapia, Ultrassom, Liberação Miofascial, Alongamentos..."
-                  className="w-full p-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
+                  className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-[#E3DCBE] placeholder-[#E3DCBE]/40 focus:outline-none"
                 />
               </div>
 
               {/* Actions */}
-              <div className="pt-4 border-t border-slate-800 flex justify-end gap-3">
+              <div className="pt-4 border-t border-[#011733] flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold"
+                  className="px-4 py-2.5 rounded-xl bg-[#011733] hover:bg-[#011733]/80 text-[#E3DCBE] font-semibold"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={isPending}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-bold"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] hover:opacity-95 text-[#000A1B] font-extrabold shadow-md"
                 >
                   {isPending ? "Salvando..." : "Registrar Evolução"}
                 </button>
