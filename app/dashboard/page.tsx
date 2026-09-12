@@ -33,98 +33,16 @@ export default async function DashboardPage() {
 
   return (
     <main className="min-h-screen bg-[#000A1B] text-[#E3DCBE] pb-16">
-      {/* Navbar */}
-      <header className="border-b border-[#011733] bg-[#010F25]/80 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <Link href="/dashboard">
-                <JRLogo size="md" />
-              </Link>
-
-              {/* Module Nav Links */}
-              <nav className="hidden lg:flex items-center gap-1.5 text-xs font-medium text-[#E3DCBE]/80">
-                <Link
-                  href="/dashboard"
-                  className="px-2.5 py-1.5 rounded-xl bg-[#011733] text-[#F5CD67] font-semibold border border-[#C1801F]/30"
-                >
-                  Visão Geral
-                </Link>
-                <Link
-                  href="/dashboard/agenda"
-                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
-                >
-                  Agenda
-                </Link>
-                <Link
-                  href="/dashboard/prontuario"
-                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
-                >
-                  Prontuários
-                </Link>
-                <Link
-                  href="/dashboard/financeiro"
-                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
-                >
-                  Financeiro
-                </Link>
-                <Link
-                  href="/dashboard/pacientes"
-                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
-                >
-                  Pacientes
-                </Link>
-                <Link
-                  href="/dashboard/profissionais"
-                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
-                >
-                  Equipe
-                </Link>
-                <Link
-                  href="/dashboard/servicos"
-                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
-                >
-                  Serviços
-                </Link>
-                <div className="h-4 w-px bg-[#011733] mx-1" />
-                <Link
-                  href="/dashboard/club"
-                  className="px-2.5 py-1.5 rounded-xl text-[#F5CD67] bg-[#E5A838]/10 border border-[#C1801F]/30 hover:bg-[#E5A838]/20 transition-colors font-extrabold flex items-center gap-1"
-                >
-                  <Crown className="w-3.5 h-3.5" />
-                  JR Club
-                </Link>
-                <Link
-                  href="/dashboard/whatsapp"
-                  className="px-2.5 py-1.5 rounded-xl text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 transition-colors font-extrabold flex items-center gap-1"
-                >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  WhatsApp
-                </Link>
-              </nav>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="hidden sm:flex items-center gap-3 px-3 py-1.5 rounded-xl bg-[#011733]/60 border border-[#C1801F]/30">
-                <div className="w-8 h-8 rounded-full bg-[#E5A838]/20 text-[#F5CD67] flex items-center justify-center font-bold text-xs border border-[#C1801F]/40">
-                  {profile.fullName.charAt(0)}
-                </div>
-                <div className="text-left">
-                  <div className="text-xs font-semibold text-white">{profile.fullName}</div>
-                  <div className="text-[10px] text-[#F5CD67] font-mono">{activeRole}</div>
-                </div>
-              </div>
-
-              <form action={logoutAction}>
-                <button
-                  type="submit"
-                  className="px-3.5 py-2 rounded-xl bg-[#011733] hover:bg-rose-500/10 hover:border-rose-500/30 border border-[#011733] text-[#E3DCBE]/80 hover:text-rose-400 text-xs font-medium transition-all flex items-center gap-2"
-                >
-                  <LogOut className="w-4 h-4" />
-                  <span>Sair</span>
-                </button>
-              </form>
-            </div>
+      {/* Top Banner Header */}
+      <header className="border-b border-[#011733] bg-[#010F25]/80 backdrop-blur-xl px-4 sm:px-8 py-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-black text-white tracking-wide">
+              Painel de Controle & Visão Geral
+            </h1>
+            <p className="text-xs text-[#E3DCBE]/70">
+              Bem-vindo ao JR FISIOTERAPIA 1.0 — Gestão Clínica Integrada.
+            </p>
           </div>
         </div>
       </header>
