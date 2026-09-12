@@ -7,19 +7,15 @@ import {
   listExpenses,
 } from "@/services/financial.service";
 import { listProfessionals } from "@/services/professional.service";
-import { formatCurrencyBRL, formatDateBR } from "@/utils/formatters";
+import { formatCurrencyBRL } from "@/utils/formatters";
 import {
-  DollarSign,
   ChevronLeft,
   ArrowUpRight,
   ArrowDownRight,
   Wallet,
   TrendingUp,
-  CreditCard,
-  CheckCircle2,
-  AlertCircle,
-  FileText,
 } from "lucide-react";
+import { JRLogo } from "@/components/ui/jr-logo";
 import ExpenseModal from "./expense-modal";
 import PaymentButton from "./payment-button";
 import PayoutCalculator from "./payout-calculator";
@@ -47,27 +43,19 @@ export default async function FinanceiroPage() {
   }));
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 pb-16">
+    <main className="min-h-screen bg-[#000A1B] text-[#E3DCBE] pb-16">
       {/* Header Bar */}
-      <header className="border-b border-slate-800 bg-slate-900/60 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <header className="border-b border-[#011733] bg-[#010F25]/80 backdrop-blur-xl sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
                 href="/dashboard"
-                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                className="p-2 rounded-xl bg-[#011733] hover:bg-[#011733]/80 text-[#E3DCBE] transition-colors"
               >
                 <ChevronLeft className="w-5 h-5" />
               </Link>
-              <div>
-                <h1 className="text-lg font-bold text-white flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-emerald-400" />
-                  Gestão Financeira & Fluxo de Caixa
-                </h1>
-                <span className="text-xs text-slate-400">
-                  Contas a Pagar/Receber, Baixas e Repasses Profissionais
-                </span>
-              </div>
+              <JRLogo size="md" subtitle="Gestão Financeira & Fluxo de Caixa" />
             </div>
 
             <ExpenseModal />
@@ -80,22 +68,22 @@ export default async function FinanceiroPage() {
         {/* Summary Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* Total Recebido */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 flex items-center justify-between">
+          <div className="bg-[#010F25]/80 border border-[#C1801F]/30 rounded-3xl p-6 flex items-center justify-between shadow-lg">
             <div>
-              <span className="text-xs text-slate-400 font-medium">Total Recebido (Entradas)</span>
-              <div className="text-2xl font-extrabold text-emerald-400 font-mono mt-1">
+              <span className="text-xs text-[#E3DCBE]/70 font-medium">Total Recebido (Entradas)</span>
+              <div className="text-2xl font-extrabold text-[#F5CD67] font-mono mt-1">
                 {formatCurrencyBRL(summary.totalReceived)}
               </div>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
+            <div className="w-12 h-12 rounded-2xl bg-[#E5A838]/10 text-[#F5CD67] flex items-center justify-center border border-[#C1801F]/30">
               <ArrowUpRight className="w-6 h-6" />
             </div>
           </div>
 
           {/* Despesas Pagas */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 flex items-center justify-between">
+          <div className="bg-[#010F25]/80 border border-[#C1801F]/30 rounded-3xl p-6 flex items-center justify-between shadow-lg">
             <div>
-              <span className="text-xs text-slate-400 font-medium">Despesas Pagas (Saídas)</span>
+              <span className="text-xs text-[#E3DCBE]/70 font-medium">Despesas Pagas (Saídas)</span>
               <div className="text-2xl font-extrabold text-rose-400 font-mono mt-1">
                 {formatCurrencyBRL(summary.totalExpenses)}
               </div>
@@ -106,31 +94,31 @@ export default async function FinanceiroPage() {
           </div>
 
           {/* Saldo Liquido */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 flex items-center justify-between">
+          <div className="bg-[#010F25]/80 border border-[#C1801F]/30 rounded-3xl p-6 flex items-center justify-between shadow-lg">
             <div>
-              <span className="text-xs text-slate-400 font-medium">Saldo Líquido em Caixa</span>
+              <span className="text-xs text-[#E3DCBE]/70 font-medium">Saldo Líquido em Caixa</span>
               <div
                 className={`text-2xl font-extrabold font-mono mt-1 ${
-                  summary.netBalance >= 0 ? "text-cyan-400" : "text-rose-400"
+                  summary.netBalance >= 0 ? "text-[#F5CD67]" : "text-rose-400"
                 }`}
               >
                 {formatCurrencyBRL(summary.netBalance)}
               </div>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center border border-cyan-500/20">
+            <div className="w-12 h-12 rounded-2xl bg-[#E5A838]/10 text-[#E5A838] flex items-center justify-center border border-[#C1801F]/30">
               <Wallet className="w-6 h-6" />
             </div>
           </div>
 
           {/* A Receber Pendente */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 flex items-center justify-between">
+          <div className="bg-[#010F25]/80 border border-[#C1801F]/30 rounded-3xl p-6 flex items-center justify-between shadow-lg">
             <div>
-              <span className="text-xs text-slate-400 font-medium">A Receber (Pendente)</span>
-              <div className="text-2xl font-extrabold text-amber-400 font-mono mt-1">
+              <span className="text-xs text-[#E3DCBE]/70 font-medium">A Receber (Pendente)</span>
+              <div className="text-2xl font-extrabold text-[#E5A838] font-mono mt-1">
                 {formatCurrencyBRL(summary.pendingReceivables)}
               </div>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20">
+            <div className="w-12 h-12 rounded-2xl bg-[#E5A838]/10 text-[#E5A838] flex items-center justify-center border border-[#C1801F]/30">
               <TrendingUp className="w-6 h-6" />
             </div>
           </div>
@@ -140,15 +128,15 @@ export default async function FinanceiroPage() {
         {profOptions.length > 0 && <PayoutCalculator professionals={profOptions} />}
 
         {/* Contas a Receber Table */}
-        <div className="bg-slate-900/60 border border-slate-800 rounded-3xl overflow-hidden shadow-xl space-y-4 p-6">
+        <div className="bg-[#010F25]/80 border border-[#C1801F]/30 rounded-3xl overflow-hidden shadow-xl space-y-4 p-6">
           <h3 className="text-base font-bold text-white flex items-center gap-2">
-            <ArrowUpRight className="w-5 h-5 text-emerald-400" />
+            <ArrowUpRight className="w-5 h-5 text-[#F5CD67]" />
             Contas a Receber & Pagamentos
           </h3>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+              <thead className="bg-[#000A1B] border-b border-[#011733] text-[#F5CD67] font-semibold uppercase tracking-wider font-mono">
                 <tr>
                   <th className="py-3 px-4">Descrição</th>
                   <th className="py-3 px-4">Paciente</th>
@@ -159,19 +147,19 @@ export default async function FinanceiroPage() {
                   <th className="py-3 px-4 text-right">Ação</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-200">
+              <tbody className="divide-y divide-[#011733] text-[#E3DCBE]">
                 {receivables.length > 0 ? (
                   receivables.map((rec) => (
-                    <tr key={rec.id} className="hover:bg-slate-800/40 transition-colors">
+                    <tr key={rec.id} className="hover:bg-[#011733]/40 transition-colors">
                       <td className="py-3.5 px-4 font-semibold text-white">{rec.description}</td>
-                      <td className="py-3.5 px-4 text-slate-300">{rec.patientName}</td>
+                      <td className="py-3.5 px-4 text-[#E3DCBE]">{rec.patientName}</td>
                       <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[10px]">
+                        <span className="px-2 py-0.5 rounded bg-[#011733] text-[#F5CD67] font-mono text-[10px]">
                           {rec.category}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-slate-400">{rec.dueDate}</td>
-                      <td className="py-3.5 px-4 font-mono font-bold text-emerald-400">
+                      <td className="py-3.5 px-4 font-mono text-[#E3DCBE]/70">{rec.dueDate}</td>
+                      <td className="py-3.5 px-4 font-mono font-bold text-[#F5CD67]">
                         {formatCurrencyBRL(rec.amount)}
                       </td>
                       <td className="py-3.5 px-4 text-center">
@@ -194,7 +182,7 @@ export default async function FinanceiroPage() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="py-8 text-center text-slate-500 text-xs">
+                    <td colSpan={7} className="py-8 text-center text-[#E3DCBE]/60 text-xs">
                       Nenhum título a receber registrado.
                     </td>
                   </tr>
@@ -205,7 +193,7 @@ export default async function FinanceiroPage() {
         </div>
 
         {/* Despesas Operacionais Table */}
-        <div className="bg-slate-900/60 border border-slate-800 rounded-3xl overflow-hidden shadow-xl space-y-4 p-6">
+        <div className="bg-[#010F25]/80 border border-[#C1801F]/30 rounded-3xl overflow-hidden shadow-xl space-y-4 p-6">
           <h3 className="text-base font-bold text-white flex items-center gap-2">
             <ArrowDownRight className="w-5 h-5 text-rose-400" />
             Despesas Operacionais (Contas a Pagar)
@@ -213,7 +201,7 @@ export default async function FinanceiroPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400 font-semibold uppercase tracking-wider">
+              <thead className="bg-[#000A1B] border-b border-[#011733] text-[#F5CD67] font-semibold uppercase tracking-wider font-mono">
                 <tr>
                   <th className="py-3 px-4">Descrição</th>
                   <th className="py-3 px-4">Categoria</th>
@@ -222,17 +210,17 @@ export default async function FinanceiroPage() {
                   <th className="py-3 px-4 text-center">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-200">
+              <tbody className="divide-y divide-[#011733] text-[#E3DCBE]">
                 {expenses.length > 0 ? (
                   expenses.map((exp) => (
-                    <tr key={exp.id} className="hover:bg-slate-800/40 transition-colors">
+                    <tr key={exp.id} className="hover:bg-[#011733]/40 transition-colors">
                       <td className="py-3.5 px-4 font-semibold text-white">{exp.description}</td>
                       <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[10px]">
+                        <span className="px-2 py-0.5 rounded bg-[#011733] text-[#E3DCBE] font-mono text-[10px]">
                           {exp.category}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-slate-400">{exp.dueDate}</td>
+                      <td className="py-3.5 px-4 font-mono text-[#E3DCBE]/70">{exp.dueDate}</td>
                       <td className="py-3.5 px-4 font-mono font-bold text-rose-400">
                         {formatCurrencyBRL(exp.amount)}
                       </td>
@@ -251,7 +239,7 @@ export default async function FinanceiroPage() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={5} className="py-8 text-center text-slate-500 text-xs">
+                    <td colSpan={5} className="py-8 text-center text-[#E3DCBE]/60 text-xs">
                       Nenhuma despesa lançada no momento.
                     </td>
                   </tr>
