@@ -15,7 +15,9 @@ import {
   Sparkles,
   RefreshCw,
   UserCheck,
+  ChevronLeft,
 } from "lucide-react";
+import { JRLogo } from "@/components/ui/jr-logo";
 import SendReminderFormModal from "./send-reminder-modal";
 
 export default async function WhatsAppDashboardPage() {
@@ -44,30 +46,39 @@ export default async function WhatsAppDashboardPage() {
   const totalConfirmed = messages.filter((m) => m.status === "READ").length;
 
   return (
-    <div className="space-y-6 text-[#E3DCBE] animate-in fade-in">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#011733] pb-5">
-        <div>
-          <div className="flex items-center gap-2">
+    <main className="min-h-screen bg-[#000A1B] text-[#E3DCBE] pb-16">
+      {/* Header Bar */}
+      <header className="border-b border-[#011733] bg-[#010F25]/80 backdrop-blur-xl sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Link
+                href="/dashboard"
+                className="p-2 rounded-xl bg-[#011733] hover:bg-[#011733]/80 text-[#E3DCBE] transition-colors flex items-center justify-center"
+                title="Voltar ao Dashboard"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Link>
+              <JRLogo size="md" subtitle="WhatsApp Business API & Lembretes Automáticos" />
+            </div>
+
+            <SendReminderFormModal appointments={eligibleAppointments} />
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-6 animate-in fade-in">
+        {/* Banner Status API */}
+        <div className="p-4 rounded-2xl bg-[#010F25] border border-[#C1801F]/30 flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               API Conectada & Ativa
             </span>
-            <span className="text-xs text-[#E3DCBE]/50">• Cloud API Official</span>
+            <span className="text-xs text-[#E3DCBE]/70">Cloud API Official (JR FISIOTERAPIA)</span>
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight mt-1 flex items-center gap-2">
-            <MessageSquare className="w-6 h-6 text-[#F5CD67]" />
-            WhatsApp Business API & Lembretes
-          </h1>
-          <p className="text-xs text-[#E3DCBE]/70">
-            Confirmação automática de consultas 1 dia antes e atualização da agenda em tempo real.
-          </p>
         </div>
-
-        <div className="flex items-center gap-3">
-          <SendReminderFormModal appointments={eligibleAppointments} />
-        </div>
-      </div>
 
       {/* Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -172,7 +183,8 @@ export default async function WhatsAppDashboardPage() {
             </table>
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

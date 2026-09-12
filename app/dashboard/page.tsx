@@ -43,66 +43,67 @@ export default async function DashboardPage() {
               </Link>
 
               {/* Module Nav Links */}
-              <nav className="hidden md:flex items-center gap-1 text-xs font-medium text-[#E3DCBE]/70">
+              <nav className="hidden lg:flex items-center gap-1.5 text-xs font-medium text-[#E3DCBE]/80">
                 <Link
                   href="/dashboard"
-                  className="px-3 py-1.5 rounded-lg bg-[#011733] text-[#F5CD67] font-semibold border border-[#C1801F]/30"
+                  className="px-2.5 py-1.5 rounded-xl bg-[#011733] text-[#F5CD67] font-semibold border border-[#C1801F]/30"
                 >
                   Visão Geral
                 </Link>
                 <Link
                   href="/dashboard/agenda"
-                  className="px-3 py-1.5 rounded-lg hover:text-[#E3DCBE] hover:bg-[#011733]/60 transition-colors"
+                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
                 >
                   Agenda
                 </Link>
                 <Link
                   href="/dashboard/prontuario"
-                  className="px-3 py-1.5 rounded-lg hover:text-[#E3DCBE] hover:bg-[#011733]/60 transition-colors"
+                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
                 >
                   Prontuários
                 </Link>
                 <Link
                   href="/dashboard/financeiro"
-                  className="px-3 py-1.5 rounded-lg hover:text-[#E3DCBE] hover:bg-[#011733]/60 transition-colors"
+                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
                 >
                   Financeiro
                 </Link>
                 <Link
                   href="/dashboard/pacientes"
-                  className="px-3 py-1.5 rounded-lg hover:text-[#E3DCBE] hover:bg-[#011733]/60 transition-colors"
+                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
                 >
                   Pacientes
                 </Link>
                 <Link
                   href="/dashboard/profissionais"
-                  className="px-3 py-1.5 rounded-lg hover:text-[#E3DCBE] hover:bg-[#011733]/60 transition-colors"
+                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
                 >
-                  Profissionais
+                  Equipe
                 </Link>
                 <Link
                   href="/dashboard/servicos"
-                  className="px-3 py-1.5 rounded-lg hover:text-[#E3DCBE] hover:bg-[#011733]/60 transition-colors"
+                  className="px-2.5 py-1.5 rounded-xl hover:text-white hover:bg-[#011733]/70 transition-colors"
                 >
                   Serviços
                 </Link>
+                <div className="h-4 w-px bg-[#011733] mx-1" />
                 <Link
                   href="/dashboard/club"
-                  className="px-3 py-1.5 rounded-lg text-[#F5CD67] hover:text-[#E5A838] hover:bg-[#011733]/60 transition-colors font-bold flex items-center gap-1"
+                  className="px-2.5 py-1.5 rounded-xl text-[#F5CD67] bg-[#E5A838]/10 border border-[#C1801F]/30 hover:bg-[#E5A838]/20 transition-colors font-extrabold flex items-center gap-1"
                 >
                   <Crown className="w-3.5 h-3.5" />
                   JR Club
                 </Link>
                 <Link
                   href="/dashboard/whatsapp"
-                  className="px-3 py-1.5 rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-[#011733]/60 transition-colors font-bold flex items-center gap-1"
+                  className="px-2.5 py-1.5 rounded-xl text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 transition-colors font-extrabold flex items-center gap-1"
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   WhatsApp
                 </Link>
                 <Link
                   href="/dashboard/ia"
-                  className="px-3 py-1.5 rounded-lg text-purple-300 hover:text-purple-200 hover:bg-[#011733]/60 transition-colors font-bold flex items-center gap-1"
+                  className="px-2.5 py-1.5 rounded-xl text-purple-300 bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 transition-colors font-extrabold flex items-center gap-1"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   IA Triagem
