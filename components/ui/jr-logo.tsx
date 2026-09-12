@@ -1,5 +1,6 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
 
 interface JRLogoProps {
   className?: string;
@@ -24,13 +25,14 @@ export function JRLogo({
   return (
     <div className={`flex items-center gap-3.5 ${className}`}>
       <div className="relative shrink-0 flex items-center justify-center p-1 rounded-2xl bg-gradient-to-br from-[#011733] to-[#010F25] border border-[#C1801F]/40 shadow-lg shadow-[#E5A838]/10 group">
-        <Image
+        {/* Standard img tag for static public asset to avoid Webpack module interop mismatches */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/logo.png"
           alt="JR Saúde Logo"
           width={dimensions.width}
           height={dimensions.height}
           className="object-contain filter drop-shadow-[0_2px_8px_rgba(229,168,56,0.35)] transition-transform group-hover:scale-105"
-          priority
         />
       </div>
       {showText && (
