@@ -15,6 +15,8 @@ import {
   BookOpen,
   Crown,
   MessageSquare,
+  BarChart3,
+  Building2,
   LogOut,
   Menu,
   X,
@@ -87,6 +89,18 @@ export function Sidebar({ userProfile }: SidebarProps) {
       href: "/dashboard/whatsapp",
       icon: MessageSquare,
       highlight: "emerald",
+    },
+    {
+      label: "Relatórios Executivos",
+      href: "/dashboard/relatorios",
+      icon: BarChart3,
+      highlight: false,
+    },
+    {
+      label: "Filiais & Multiunidades",
+      href: "/dashboard/unidades",
+      icon: Building2,
+      highlight: false,
     },
   ];
 

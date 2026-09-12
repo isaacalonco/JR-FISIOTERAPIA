@@ -78,8 +78,8 @@ Este documento sintetiza as 10 fases ordenadas de implementação, respeitando a
 
 ---
 
-### ⏳ FASE 10: Relatórios Executivos, Indicadores e Multiunidade Avançado
-- Relatórios consolidados de faturamento, produtividade e marketing.
-- Painel de controle para múltiplas filiais e expansão para outras unidades.
-- Exportação em PDF, Excel e CSV.
-- Preparação final para o modelo SaaS comercial.
+### ✅ FASE 10: Relatórios Executivos, Indicadores e Multiunidade Avançado (CONCLUÍDA)
+- Dashboard executivo com DRE consolidado (Faturamento Bruto, Despesas, Lucro Líquido, A Receber Pendente).
+- Relatórios de Produtividade da Equipe Fisioterapêutica e Taxa de Ocupação da Agenda (%).
+- Indicadores e Analytics do programa JR Club.
+- Suporte a Gestão de Filiais/Multiunidades (`units`) e exportação de dados em CSV no 1-click.
