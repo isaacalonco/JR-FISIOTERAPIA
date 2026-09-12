@@ -73,11 +73,11 @@ Este documento sintetiza as 10 fases ordenadas de implementação, respeitando a
 
 ---
 
-### ⏳ FASE 9: Módulo Jurídico e Auditoria Avançada
-- Módulo com segregação lógica e autonomia do profissional de direito.
-- Gestão de processos, contratos e prazos.
-- Protocolo de compartilhamento consentido de dados de pacientes.
-- Trilha avançada de auditoria com exportação legal.
+### ✅ FASE 9: Módulo Jurídico e Auditoria Avançada (CONCLUÍDA)
+- Módulo com segregação lógica e autonomia para gestão jurídica e de conformidade.
+- Gestão de processos judiciais/notificações, contratos e prazos vinculados a pacientes.
+- Modelos e termos de consentimento livre e esclarecido (TCLE) com conformidade LGPD.
+- Trilha imutável de auditoria (`audit_logs`) de todas as ações sensíveis com busca e visualização JSON.
 
 ---
 
