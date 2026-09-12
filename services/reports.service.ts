@@ -99,8 +99,8 @@ export async function getFinancialReport(
       pendingReceivables,
       paymentMethodBreakdown,
     };
-  } catch (err) {
-    console.warn("Erro ao gerar relatório financeiro:", err);
+  } catch (err: any) {
+    console.warn("Erro ao gerar relatório financeiro:", err?.message || String(err));
     return {
       grossRevenue: 0,
       totalExpenses: 0,
@@ -177,8 +177,8 @@ export async function getProductivityReport(
         occupancyRate,
       };
     });
-  } catch (err) {
-    console.warn("Erro ao gerar relatório de produtividade:", err);
+  } catch (err: any) {
+    console.warn("Erro ao gerar relatório de produtividade:", err?.message || String(err));
     return [];
   }
 }
@@ -217,8 +217,8 @@ export async function getClubAnalytics(tenantId: string): Promise<ClubAnalyticsD
       vouchersIssued,
       totalClubRevenue,
     };
-  } catch (err) {
-    console.warn("Erro ao gerar indicadores do JR Club:", err);
+  } catch (err: any) {
+    console.warn("Erro ao gerar indicadores do JR Club:", err?.message || String(err));
     return {
       activeSubscriptions: 0,
       extraCreditsPurchased: 0,

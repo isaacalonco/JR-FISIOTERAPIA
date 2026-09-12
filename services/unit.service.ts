@@ -24,7 +24,7 @@ export async function listUnits(tenantId: string): Promise<UnitRecord[]> {
       .order("name", { ascending: true });
 
     if (error) {
-      console.warn("Erro ao listar unidades:", error);
+      console.warn("Aviso ao listar unidades (tabela zerada ou migração pendente):", error.message || String(error));
       return [];
     }
 
@@ -37,8 +37,8 @@ export async function listUnits(tenantId: string): Promise<UnitRecord[]> {
       isActive: u.is_active,
       createdAt: u.created_at,
     }));
-  } catch (err) {
-    console.warn("Erro em listUnits:", err);
+  } catch (err: any) {
+    console.warn("Erro em listUnits:", err?.message || String(err));
     return [];
   }
 }
