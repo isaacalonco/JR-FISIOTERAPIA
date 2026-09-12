@@ -42,9 +42,9 @@ export async function sendAppointmentReminder(tenantId: string, appointmentId: s
       id,
       tenant_id,
       start_time,
-      patient:patients(id, full_name, phone),
-      professional:professionals(id, full_name),
-      service:services(id, name)
+      patients ( id, full_name, phone ),
+      professionals ( id, full_name ),
+      services ( id, name )
     `)
     .eq("id", appointmentId)
     .eq("tenant_id", tenantId)
@@ -54,9 +54,9 @@ export async function sendAppointmentReminder(tenantId: string, appointmentId: s
     throw new Error("Agendamento não encontrado para envio de lembrete WhatsApp.");
   }
 
-  const patient = appt.patient as unknown as { id: string; full_name: string; phone: string };
-  const professional = appt.professional as unknown as { id: string; full_name: string };
-  const service = appt.service as unknown as { id: string; name: string };
+  const patient = appt.patients as unknown as { id: string; full_name: string; phone: string };
+  const professional = appt.professionals as unknown as { id: string; full_name: string };
+  const service = appt.services as unknown as { id: string; name: string };
 
   if (!patient || !patient.phone) {
     throw new Error("O paciente não possui número de celular cadastrado.");
@@ -122,7 +122,7 @@ export async function processWhatsAppConfirmationToken(
   // Busca agendamento por token
   const { data: appt, error: apptErr } = await supabase
     .from("appointments")
-    .select("id, tenant_id, status, patient:patients(full_name)")
+    .select("id, tenant_id, status, patients ( full_name )")
     .eq("whatsapp_confirmation_token", token)
     .single();
 
@@ -133,7 +133,7 @@ export async function processWhatsAppConfirmationToken(
     };
   }
 
-  const patientName = (appt.patient as any)?.full_name || "Paciente";
+  const patientName = (appt.patients as any)?.full_name || "Paciente";
 
   if (action === "CONFIRM") {
     await supabase
@@ -179,44 +179,49 @@ export async function processWhatsAppConfirmationToken(
  * Lista o histórico de mensagens e lembretes enviados pelo WhatsApp
  */
 export async function listWhatsAppMessages(tenantId: string): Promise<WhatsAppMessageRecord[]> {
-  const supabase = await createClient();
+  try {
+    const supabase = await createClient();
 
-  const { data, error } = await supabase
-    .from("whatsapp_messages")
-    .select(`
-      id,
-      tenant_id,
-      appointment_id,
-      patient_id,
-      phone_number,
-      message_type,
-      content,
-      status,
-      confirmation_token,
-      sent_at,
-      created_at,
-      patient:patients(full_name)
-    `)
-    .eq("tenant_id", tenantId)
-    .order("created_at", { ascending: false });
+    const { data, error } = await supabase
+      .from("whatsapp_messages")
+      .select(`
+        id,
+        tenant_id,
+        appointment_id,
+        patient_id,
+        phone_number,
+        message_type,
+        content,
+        status,
+        confirmation_token,
+        sent_at,
+        created_at,
+        patients ( full_name )
+      `)
+      .eq("tenant_id", tenantId)
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("Erro ao listar mensagens do WhatsApp:", error);
+    if (error) {
+      console.warn("Aviso ao buscar mensagens do WhatsApp (migração pendente ou tabela vazia):", error.message || error);
+      return [];
+    }
+
+    return (data || []).map((m: any) => ({
+      id: m.id,
+      tenantId: m.tenant_id,
+      appointmentId: m.appointment_id,
+      patientId: m.patient_id,
+      phoneNumber: m.phone_number,
+      messageType: m.message_type,
+      content: m.content,
+      status: m.status,
+      confirmationToken: m.confirmation_token,
+      sentAt: m.sent_at,
+      createdAt: m.created_at,
+      patientName: m.patients?.full_name || "Desconhecido",
+    }));
+  } catch (err: any) {
+    console.warn("Exceção ao listar mensagens do WhatsApp:", err?.message || err);
     return [];
   }
-
-  return (data || []).map((m: any) => ({
-    id: m.id,
-    tenantId: m.tenant_id,
-    appointmentId: m.appointment_id,
-    patientId: m.patient_id,
-    phoneNumber: m.phone_number,
-    messageType: m.message_type,
-    content: m.content,
-    status: m.status,
-    confirmationToken: m.confirmation_token,
-    sentAt: m.sent_at,
-    createdAt: m.created_at,
-    patientName: m.patient?.full_name || "Desconhecido",
-  }));
 }

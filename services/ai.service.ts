@@ -165,50 +165,55 @@ export async function verifyAndCommitAITranscription(
  * Lista transcrições de IA com seus respectivos status de verificação humana
  */
 export async function listAITranscriptions(tenantId: string): Promise<AITranscriptionRecord[]> {
-  const supabase = await createClient();
+  try {
+    const supabase = await createClient();
 
-  const { data, error } = await supabase
-    .from("ai_intake_transcriptions")
-    .select(`
-      id,
-      tenant_id,
-      patient_id,
-      appointment_id,
-      audio_url,
-      raw_transcription,
-      ai_summary,
-      suggested_chief_complaint,
-      suggested_pain_level,
-      is_verified,
-      verified_by_user_id,
-      verified_at,
-      created_at,
-      patient:patients(full_name),
-      verifier:profiles!ai_intake_transcriptions_verified_by_user_id_fkey(full_name)
-    `)
-    .eq("tenant_id", tenantId)
-    .order("created_at", { ascending: false });
+    const { data, error } = await supabase
+      .from("ai_intake_transcriptions")
+      .select(`
+        id,
+        tenant_id,
+        patient_id,
+        appointment_id,
+        audio_url,
+        raw_transcription,
+        ai_summary,
+        suggested_chief_complaint,
+        suggested_pain_level,
+        is_verified,
+        verified_by_user_id,
+        verified_at,
+        created_at,
+        patients ( full_name ),
+        profiles ( full_name )
+      `)
+      .eq("tenant_id", tenantId)
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("Erro ao listar transcrições da IA:", error);
+    if (error) {
+      console.warn("Aviso ao buscar transcrições da IA (migração pendente ou tabela vazia):", error.message || error);
+      return [];
+    }
+
+    return (data || []).map((t: any) => ({
+      id: t.id,
+      tenantId: t.tenant_id,
+      patientId: t.patient_id,
+      appointmentId: t.appointment_id,
+      audioUrl: t.audio_url,
+      rawTranscription: t.raw_transcription,
+      aiSummary: t.ai_summary,
+      suggestedChiefComplaint: t.suggested_chief_complaint,
+      suggestedPainLevel: t.suggested_pain_level,
+      isVerified: t.is_verified,
+      verifiedByUserId: t.verified_by_user_id,
+      verifiedAt: t.verified_at,
+      createdAt: t.created_at,
+      patientName: t.patients?.full_name || "Desconhecido",
+      verifiedByName: t.profiles?.full_name || null,
+    }));
+  } catch (err: any) {
+    console.warn("Exceção ao listar transcrições da IA:", err?.message || err);
     return [];
   }
-
-  return (data || []).map((t: any) => ({
-    id: t.id,
-    tenantId: t.tenant_id,
-    patientId: t.patient_id,
-    appointmentId: t.appointment_id,
-    audioUrl: t.audio_url,
-    rawTranscription: t.raw_transcription,
-    aiSummary: t.ai_summary,
-    suggestedChiefComplaint: t.suggested_chief_complaint,
-    suggestedPainLevel: t.suggested_pain_level,
-    isVerified: t.is_verified,
-    verifiedByUserId: t.verified_by_user_id,
-    verifiedAt: t.verified_at,
-    createdAt: t.created_at,
-    patientName: t.patient?.full_name || "Desconhecido",
-    verifiedByName: t.verifier?.full_name || null,
-  }));
 }
