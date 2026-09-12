@@ -8,17 +8,17 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "JR SAÚDE | Sistema de Gestão Clínica e Multidisciplinar",
+  title: "JR FISIOTERAPIA | Sistema de Gestão Clínica e Multidisciplinar",
   description:
-    "Plataforma inteligente e integrada de gestão para clínicas de saúde, fisioterapia, reabilitação e bem-estar.",
+    "Plataforma inteligente e integrada de gestão para clínicas de fisioterapia, reabilitação física e bem-estar.",
   keywords: [
-    "JR Saúde",
+    "JR Fisioterapia",
     "Gestão Clínica",
     "Fisioterapia",
     "Prontuário Eletrônico",
     "Agendamento Clínico",
   ],
-  authors: [{ name: "JR Saúde Engenharia" }],
+  authors: [{ name: "JR Fisioterapia Engenharia" }],
 };
 
 export default function RootLayout({

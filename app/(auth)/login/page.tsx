@@ -109,7 +109,7 @@ export default function LoginPage() {
               <div className="w-5 h-5 border-2 border-[#000A1B] border-t-transparent rounded-full animate-spin" />
             ) : (
               <>
-                <span>Acessar o Sistema JR SAÚDE</span>
+                <span>Acessar o Sistema JR FISIOTERAPIA</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </>
             )}

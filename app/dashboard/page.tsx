@@ -127,7 +127,7 @@ export default async function DashboardPage() {
           <div className="relative z-10 max-w-3xl space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#E5A838]/10 text-[#F5CD67] border border-[#C1801F]/30">
               <UserCheck className="w-3.5 h-3.5" />
-              Ambiente Operacional Ativo • JR SAÚDE 1.0
+              Ambiente Operacional Ativo • JR FISIOTERAPIA 1.0
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               Painel de Gestão da Clínica
