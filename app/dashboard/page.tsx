@@ -14,6 +14,8 @@ import {
   Crown,
   DollarSign,
   FileText,
+  MessageSquare,
+  Sparkles,
 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
@@ -90,6 +92,20 @@ export default async function DashboardPage() {
                 >
                   <Crown className="w-3.5 h-3.5" />
                   JR Club
+                </Link>
+                <Link
+                  href="/dashboard/whatsapp"
+                  className="px-3 py-1.5 rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-[#011733]/60 transition-colors font-bold flex items-center gap-1"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  WhatsApp
+                </Link>
+                <Link
+                  href="/dashboard/ia"
+                  className="px-3 py-1.5 rounded-lg text-purple-300 hover:text-purple-200 hover:bg-[#011733]/60 transition-colors font-bold flex items-center gap-1"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  IA Triagem
                 </Link>
               </nav>
             </div>
