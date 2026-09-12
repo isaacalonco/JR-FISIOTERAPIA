@@ -47,12 +47,5 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  // Se o usuário já está logado e acessa a página de login
-  if (user && isAuthRoute && !pathname.startsWith("/auth/callback")) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
-    return NextResponse.redirect(url);
-  }
-
   return supabaseResponse;
 }

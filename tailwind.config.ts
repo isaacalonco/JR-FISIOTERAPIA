@@ -9,6 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        navy: {
+          dark: "#000A1B",       // Azul-marinho
+          deep: "#010F25",       // Azul profundo
+          secondary: "#011733",  // Azul secundário
+        },
+        gold: {
+          dark: "#C1801F",       // Dourado escuro
+          primary: "#E5A838",    // Dourado principal
+          light: "#F5CD67",      // Dourado claro
+        },
+        brand: {
+          offwhite: "#E3DCBE",   // Off-white
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -16,40 +29,31 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
+          DEFAULT: "#E5A838",
+          foreground: "#000A1B",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#011733",
+          foreground: "#E3DCBE",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-          teal: "#0d9488",
-          emerald: "#059669",
+          DEFAULT: "#F5CD67",
+          foreground: "#000A1B",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#011733",
+          foreground: "#E3DCBE",
         },
-        border: "hsl(var(--border))",
-        ring: "hsl(var(--ring))",
+        border: "#011733",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        gold: "0 4px 20px -2px rgba(229, 168, 56, 0.25)",
+        "gold-glow": "0 0 25px rgba(245, 205, 103, 0.35)",
       },
     },
   },

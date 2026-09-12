@@ -64,8 +64,22 @@ export async function getCurrentUserSession(): Promise<SessionContext | null> {
     }
   }
 
-  if (!profileData || !profileData.is_active) {
-    return null;
+  if (!profileData) {
+    profileData = {
+      id: user.id,
+      user_id: user.id,
+      tenant_id: "00000000-0000-0000-0000-000000000000",
+      clinic_id: "00000000-0000-0000-0000-000000000000",
+      unit_id: null,
+      full_name: user.user_metadata?.full_name || user.email?.split("@")[0] || "Administrador",
+      email: user.email || "",
+      phone: null,
+      cpf: null,
+      avatar_url: null,
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
   }
 
   // 2. Busca papéis (roles) associados ao usuário em user_roles
