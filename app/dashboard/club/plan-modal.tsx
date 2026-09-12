@@ -38,78 +38,80 @@ export default function PlanModal() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl">
-            <div className="p-6 border-b border-slate-800 flex items-center justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
+          <div className="fixed inset-0" onClick={() => setIsOpen(false)} />
+          <div className="relative z-10 w-full max-w-lg max-h-[85vh] flex flex-col bg-[#010F25] border border-[#C1801F]/35 rounded-3xl shadow-2xl overflow-hidden text-[#E3DCBE]">
+            <div className="p-5 sm:p-6 border-b border-[#011733] flex items-center justify-between shrink-0 bg-[#010F25]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
+                <div className="w-10 h-10 rounded-2xl bg-[#E5A838]/10 text-[#F5CD67] flex items-center justify-center border border-[#C1801F]/30">
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">Criar Plano JR Saúde Club</h3>
-                  <p className="text-xs text-slate-400">Configure modalidade, créditos mensais e recarga avulsa</p>
+                  <h3 className="text-base font-bold text-white">Criar Plano JR FISIOTERAPIA Club</h3>
+                  <p className="text-xs text-[#E3DCBE]/70">Configure modalidade, créditos mensais e recarga avulsa</p>
                 </div>
               </div>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors"
+                className="text-[#E3DCBE]/60 hover:text-white p-2 rounded-xl hover:bg-[#011733] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1 text-xs">
               {state?.error && (
-                <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 text-xs flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
+                <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-300 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
                   {state.error}
                 </div>
               )}
               {state?.success && (
-                <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 text-xs flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-300 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
                   {state.message}
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Nome do Plano</label>
+                <label className="block text-xs font-semibold text-[#E3DCBE]/80 mb-1">Nome do Plano</label>
                 <input
                   type="text"
                   name="name"
                   required
                   placeholder="Ex: Plano Fit 2 Créditos / Plano Família 3 Créditos"
-                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                  className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-xs text-[#E3DCBE] focus:outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">Valor Mensal (R$)</label>
+                  <label className="block text-xs font-semibold text-[#E3DCBE]/80 mb-1">Valor Mensal (R$)</label>
                   <input
                     type="number"
                     step="0.01"
                     name="monthlyPrice"
                     required
                     placeholder="69.00"
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-xs text-[#E3DCBE] focus:outline-none font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">Créditos por Mês</label>
+                  <label className="block text-xs font-semibold text-[#E3DCBE]/80 mb-1">Créditos por Mês</label>
                   <input
                     type="number"
                     name="creditsPerMonth"
                     required
                     defaultValue={2}
                     min={1}
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                    className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-xs text-[#E3DCBE] focus:outline-none font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#E3DCBE]/80 mb-1">
                   Preço por Crédito Extra Avulso (R$)
                 </label>
                 <input
@@ -118,27 +120,27 @@ export default function PlanModal() {
                   name="extraCreditPrice"
                   required
                   placeholder="35.00"
-                  className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                  className="w-full p-2.5 bg-[#000A1B]/80 border border-[#011733] focus:border-[#E5A838] rounded-xl text-xs text-[#E3DCBE] focus:outline-none font-mono"
                 />
-                <span className="text-[10px] text-slate-500 mt-1 block">
+                <span className="text-[10px] text-[#E3DCBE]/50 mt-1 block">
                   Valor promocional caso o cliente deseje abastecer créditos adicionais no mês.
                 </span>
               </div>
 
-              <div className="pt-4 border-t border-slate-800 flex justify-end gap-3">
+              <div className="pt-4 border-t border-[#011733] flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-semibold rounded-xl transition-colors"
+                  className="px-4 py-2.5 bg-[#011733] hover:bg-[#011733]/80 text-[#E3DCBE] text-xs font-semibold rounded-xl transition-colors"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-5 py-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-purple-500/20 transition-all disabled:opacity-50"
+                  className="px-5 py-2.5 bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] text-[#000A1B] text-xs font-extrabold rounded-xl shadow-lg transition-all disabled:opacity-50"
                 >
-                  {loading ? "Salvando..." : "Salvar Plano"}
+                  {loading ? "Gravando..." : "Criar Plano"}
                 </button>
               </div>
             </form>

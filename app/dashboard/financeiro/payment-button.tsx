@@ -34,14 +34,15 @@ export default function PaymentButton({ receivableId, amount }: PaymentButtonPro
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
-          <div className="bg-[#010F25] border border-[#C1801F]/35 rounded-3xl w-full max-w-sm shadow-2xl p-6 relative text-[#E3DCBE] space-y-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#000A1B]/85 backdrop-blur-md animate-in fade-in">
+          <div className="fixed inset-0" onClick={() => setIsOpen(false)} />
+          <div className="relative z-10 bg-[#010F25] border border-[#C1801F]/35 rounded-3xl w-full max-w-sm shadow-2xl p-6 text-[#E3DCBE] space-y-5">
             <div className="flex items-center justify-between border-b border-[#011733] pb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#F5CD67]" />
                 Confirmar Recebimento
               </h3>
-              <button onClick={() => setIsOpen(false)} className="text-[#E3DCBE]/60 hover:text-white">
+              <button type="button" onClick={() => setIsOpen(false)} className="text-[#E3DCBE]/60 hover:text-white p-1 rounded-lg hover:bg-[#011733]">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -65,15 +66,17 @@ export default function PaymentButton({ receivableId, amount }: PaymentButtonPro
 
             <div className="pt-2 flex justify-end gap-2 text-xs">
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
-                className="px-3.5 py-2 rounded-xl bg-[#011733] text-[#E3DCBE] font-semibold"
+                className="px-3.5 py-2 rounded-xl bg-[#011733] text-[#E3DCBE] font-semibold hover:bg-[#011733]/80"
               >
                 Cancelar
               </button>
               <button
+                type="button"
                 onClick={handleConfirm}
                 disabled={isPending}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] text-[#000A1B] font-extrabold shadow-md"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#E5A838] via-[#F5CD67] to-[#C1801F] text-[#000A1B] font-extrabold shadow-md hover:opacity-95"
               >
                 {isPending ? "Efetuando..." : "Confirmar Recebimento"}
               </button>
