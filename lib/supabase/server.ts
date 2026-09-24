@@ -1,6 +1,13 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+const fetchWithTimeout: typeof fetch = (url, options = {}) => {
+  return fetch(url, {
+    ...options,
+    signal: options.signal || AbortSignal.timeout(3500),
+  });
+};
+
 /**
  * Cliente Supabase para Server Components, Server Actions e Route Handlers.
  * Utiliza gerenciamento seguro de cookies de sessão com HttpOnly e SameSite.
@@ -12,6 +19,9 @@ export async function createClient() {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
   return createServerClient(supabaseUrl, supabaseAnonKey, {
+    global: {
+      fetch: fetchWithTimeout,
+    },
     cookies: {
       getAll() {
         return cookieStore.getAll();

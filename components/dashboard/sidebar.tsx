@@ -21,6 +21,7 @@ import {
   Menu,
   X,
   UserCheck,
+  Scale,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -58,6 +59,12 @@ export function Sidebar({ userProfile }: SidebarProps) {
       label: "Gestão Financeira",
       href: "/dashboard/financeiro",
       icon: DollarSign,
+      highlight: false,
+    },
+    {
+      label: "Área do Advogado",
+      href: "/dashboard/advogado",
+      icon: Scale,
       highlight: false,
     },
     {
@@ -172,6 +179,7 @@ export function Sidebar({ userProfile }: SidebarProps) {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all border ${styleClass}`}
               >

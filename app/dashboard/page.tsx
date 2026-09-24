@@ -16,6 +16,7 @@ import {
   FileText,
   MessageSquare,
   Sparkles,
+  Scale,
 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
@@ -138,7 +139,7 @@ export default async function DashboardPage() {
         </div>
 
         {/* Quick Access Modules Navigation */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Agenda & Consultas */}
           <Card className="bg-[#010F25]/80 border-[#C1801F]/25 hover:bg-[#010F25] transition-all shadow-lg">
             <CardHeader>
@@ -200,6 +201,28 @@ export default async function DashboardPage() {
                 className="inline-flex items-center gap-2 text-xs font-semibold text-[#F5CD67] hover:text-[#E5A838] transition-colors"
               >
                 <span>Acessar Financeiro</span>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Área do Advogado */}
+          <Card className="bg-[#010F25]/80 border-[#C1801F]/25 hover:bg-[#010F25] transition-all shadow-lg">
+            <CardHeader>
+              <div className="w-10 h-10 rounded-xl bg-[#E5A838]/10 text-[#F5CD67] flex items-center justify-center mb-2 border border-[#C1801F]/30">
+                <Scale className="w-5 h-5" />
+              </div>
+              <CardTitle className="text-base text-white">Área do Advogado</CardTitle>
+              <CardDescription className="text-[#E3DCBE]/60 text-xs">
+                Processos de INSS, Observadoria, Afastamentos, andamentos e honorários.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Link
+                href="/dashboard/advogado"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-[#F5CD67] hover:text-[#E5A838] transition-colors"
+              >
+                <span>Acessar Módulo Jurídico</span>
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </CardContent>

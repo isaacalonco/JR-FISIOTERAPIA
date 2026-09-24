@@ -27,6 +27,8 @@ interface AgendaPageProps {
   searchParams: Promise<{ date?: string; prof?: string; status?: string }>;
 }
 
+export const revalidate = 30; // cache CDN por 30s
+
 export default async function AgendaPage({ searchParams }: AgendaPageProps) {
   const session = await getCurrentUserSession();
   if (!session) redirect("/login");
@@ -34,25 +36,18 @@ export default async function AgendaPage({ searchParams }: AgendaPageProps) {
   const { date, prof, status } = await searchParams;
   const tenantId = session.profile.tenantId;
 
-  // Carrega agendamentos
-  const appointments = await listAppointments(tenantId, {
-    date,
-    professionalId: prof,
-    status,
-  });
+  const supabase = await createClient();
 
-  // Carrega relacionamentos para o modal de novo agendamento
-  const [patientsData, profsData, servicesData] = await Promise.all([
+  // Todos os fetches em paralelo — evita múltiplos round-trips sequenciais
+  const [appointments, patientsData, profsData, servicesData, roomsResult] = await Promise.all([
+    listAppointments(tenantId, { date, professionalId: prof, status }),
     listPatients(tenantId, "", 100),
     listProfessionals(tenantId),
     listServices(tenantId),
+    supabase.from("rooms").select("id, name").eq("tenant_id", tenantId),
   ]);
 
-  const supabase = await createClient();
-  const { data: roomsData } = await supabase
-    .from("rooms")
-    .select("id, name")
-    .eq("tenant_id", tenantId);
+  const roomsData = roomsResult.data;
 
   const patientOptions = patientsData.patients.map((p) => ({ id: p.id, name: p.fullName }));
   const profOptions = profsData.map((p) => ({
